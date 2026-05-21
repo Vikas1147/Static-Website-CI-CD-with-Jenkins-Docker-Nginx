@@ -3,13 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                echo 'Code Checkout'
-            }
-        }
-
-        stage('Build Docker Image') {
+        stage('Build Image') {
             steps {
                 bat 'docker build -t static-site .'
             }
@@ -21,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Smoke Test') {
+        stage('Check Site') {
             steps {
                 bat 'curl http://localhost:8081'
             }
